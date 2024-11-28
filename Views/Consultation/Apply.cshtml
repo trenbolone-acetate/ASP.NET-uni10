@@ -1,0 +1,41 @@
+﻿@model ConsultationFormModel
+
+@{
+ViewBag.Title = "Реєстрація на консультацію";
+}
+
+<h2>Реєстрація на консультацію</h2>
+
+@using (Html.BeginForm())
+{
+<div>
+    <label for="FullName">Повне ім'я</label>
+    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+</div>
+
+<div>
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+</div>
+
+<div>
+    <label for="Product">Продукт</label>
+    @Html.DropDownListFor(m => m.Product, ViewBag.Products as SelectList, "Оберіть продукт", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Product, "", new { @class = "text-danger" })
+</div>
+
+<div>
+    <label for="ConsultationDate">Дата консультації</label>
+    @Html.TextBoxFor(m => m.ConsultationDate, new { @type = "date", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ConsultationDate, "", new { @class = "text-danger" })
+</div>
+
+<button type="submit" class="btn btn-primary">Надіслати</button>
+}
+
+@if (ViewBag.Message != null)
+{
+<p class="text-success">@ViewBag.Message</p>
+}
